@@ -4,9 +4,15 @@ import generator from "./util/generator";
 
 (async () => {
 
-  const trainingDataset = tf.data.generator(() => generator("train")).batch(100).shuffle(100);
+  //112800
+  const trainingDataset = tf.data.generator(() => generator("train"))
+    .batch(10)
+    .shuffle(10);
 
-  const testDataset = tf.data.generator(() => generator("test")).batch(100).shuffle(100);
+  //18800
+  const testDataset = tf.data.generator(() => generator("test"))
+    .batch(10)
+    .shuffle(10);
 
   await model.fitDataset(trainingDataset, {
     epochs: 5,

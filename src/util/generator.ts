@@ -27,7 +27,7 @@ export default function* (type: string) {
       .div(255)
       .reshape([rows, cols, 1]);
 
-    const label = tf.oneHot(labelsBin[labelPtr], 47);
+    const label = tf.oneHot(labelsBin[labelPtr++], 47);
 
     yield {
       xs: tensor,

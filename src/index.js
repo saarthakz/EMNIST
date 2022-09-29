@@ -1,22 +1,21 @@
 import * as tf from "@tensorflow/tfjs-node";
-import testGenerator from "./util/testGenerator";
-import model from "./util/model";
-import trainGenerator from "./util/trainGenerator";
+import generator from "./generator.js";
+import model from "./model.js";
 
-(async () => {
+model.summary();
 
-  const trainingDataset = tf.data.generator(trainGenerator)
-    .batch(10)
-    .shuffle(10);
+//124800
+const trainingDataset = tf.data.generator(() => generator("train"))
+  .shuffle(124800)
+  .batch(200);
 
-  const testDataset = tf.data.generator(testGenerator)
-    .batch(10);
+//20800
+const testDataset = tf.data.generator(() => generator("test"))
+  .batch(200);
 
-  await model.fitDataset(trainingDataset, {
-    epochs: 5,
-    validationData: testDataset,
-  });
+await model.fitDataset(trainingDataset, {
+  epochs: 1,
+  validationData: testDataset,
+});
 
-  await model.save("file://model/NN");
-
-})();
+await model.save("file://model/NN");

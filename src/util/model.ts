@@ -26,15 +26,10 @@ model.add(tf.layers.dense({
   activation: "relu",
   units: 512,
 }));
-
-model.add(tf.layers.dense({
-  activation: "relu",
-  units: 128,
-}));
 model.add(tf.layers.dropout({ rate: 0.25 }));
 model.add(tf.layers.dense({
   activation: "softmax",
-  units: 47,
+  units: 26,
 }));
 
 model.compile({

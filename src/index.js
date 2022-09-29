@@ -1,18 +1,15 @@
 import * as tf from "@tensorflow/tfjs-node";
+import testGenerator from "./util/testGenerator";
 import model from "./util/model";
-import generator from "./util/generator";
+import trainGenerator from "./util/trainGenerator";
 
 (async () => {
 
-  model.summary();
-
-  //112800
-  const trainingDataset = tf.data.generator(() => generator("train"))
+  const trainingDataset = tf.data.generator(trainGenerator)
     .batch(10)
     .shuffle(10);
 
-  //18800
-  const testDataset = tf.data.generator(() => generator("test"))
+  const testDataset = tf.data.generator(testGenerator)
     .batch(10);
 
   await model.fitDataset(trainingDataset, {
@@ -20,6 +17,6 @@ import generator from "./util/generator";
     validationData: testDataset,
   });
 
-  await model.save("file://Model/NN");
+  await model.save("file://model/NN");
 
 })();

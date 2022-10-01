@@ -4,14 +4,14 @@ import model from "./model.js";
 
 model.summary();
 
-//124800
+const trainingDataSize = 124800;
 const trainingDataset = tf.data.generator(() => generator("train"))
-  .shuffle(124800)
-  .batch(200);
+  .shuffle(trainingDataSize)
+  .batch(100);
 
-//20800
+const testingDataSize = 20800;
 const testDataset = tf.data.generator(() => generator("test"))
-  .batch(200);
+  .batch(100);
 
 await model.fitDataset(trainingDataset, {
   epochs: 1,
@@ -19,3 +19,6 @@ await model.fitDataset(trainingDataset, {
 });
 
 await model.save("file://model/NN");
+
+
+

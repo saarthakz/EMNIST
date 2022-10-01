@@ -17,16 +17,17 @@ export default function* (type) {
     for (let row = 0; row < rows; row++) {
       const imgRow = new Array(cols);
       for (let col = 0; col < cols; col++) {
-        imgRow[col] = [imageBin[imagePtr++] / 255];
+        imgRow[col] = Math.round(imageBin[imagePtr++] / 255);
       };
       image[row] = imgRow;
     };
 
-    const transpose = new Array(cols).fill(new Array(rows));
+    const newImage = new Array(cols).fill(0)
+      .map(() => new Array(rows).fill(0));
 
-    for (let col = 0; col < cols; col++) {
-      for (let row = 0; row < rows; row++) {
-        transpose[col][row] = image[row][col];
+    for (let row = 0; row < rows; row++) {
+      for (let col = 0; col < cols; col++) {
+        newImage[col][row] = [image[row][col]];
       };
     };
 
@@ -34,8 +35,9 @@ export default function* (type) {
     label[labelsBin[labelPtr++] - 1] = 1;
 
     yield {
-      xs: transpose,
+      xs: newImage,
       ys: label
     };
   };
 };
+

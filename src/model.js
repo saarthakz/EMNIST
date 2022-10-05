@@ -34,7 +34,7 @@ model.add(tf.layers.dense({
 
 model.compile({
   loss: "categoricalCrossentropy",
-  optimizer: tf.train.sgd(0.02),
+  optimizer: tf.train.adam(),
   metrics: ['accuracy']
 });
 

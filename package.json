@@ -5,7 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node src/index.js"
+    "build": "esbuild ./src/main.ts ./src/model.ts --outdir=build",
+    "start": "npm run build && node build/main.js"
   },
   "keywords": [],
   "author": "",
@@ -14,6 +15,7 @@
     "@tensorflow/tfjs-node": "^3.20.0"
   },
   "devDependencies": {
-    "@types/node": "^18.7.15"
+    "@types/node": "^18.7.15",
+    "esbuild": "^0.15.10"
   }
 }

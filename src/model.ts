@@ -24,7 +24,7 @@ model.add(tf.layers.flatten());
 
 model.add(tf.layers.dense({
   activation: "relu",
-  units: 512,
+  units: 128,
 }));
 // model.add(tf.layers.dropout({ rate: 0.25 }));
 model.add(tf.layers.dense({
@@ -37,5 +37,7 @@ model.compile({
   optimizer: tf.train.adam(),
   metrics: ['accuracy']
 });
+
+model.summary();
 
 export default model;

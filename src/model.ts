@@ -29,7 +29,8 @@ model.add(tf.layers.dense({
 // model.add(tf.layers.dropout({ rate: 0.25 }));
 model.add(tf.layers.dense({
   activation: "softmax",
-  units: 26,
+  // units: 26, //For Letters
+  units: 47, //For Balanced
 }));
 
 model.compile({

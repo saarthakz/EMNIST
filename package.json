@@ -5,14 +5,16 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "build": "esbuild ./src/main.ts ./src/model.ts --outdir=build",
-    "start": "npm run build && node build/main.js"
+    "build": "esbuild ./src/train.ts ./src/model.ts ./src/predict.js ./src/map.js --outdir=build",
+    "train": "npm run build && node build/train.js",
+    "predict": "npm run build && node build/predict.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@tensorflow/tfjs-node": "^3.20.0"
+    "@tensorflow/tfjs-node": "^3.20.0",
+    "tesseract.js": "^3.0.3"
   },
   "devDependencies": {
     "@types/node": "^18.7.15",
